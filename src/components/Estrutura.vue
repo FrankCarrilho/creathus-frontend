@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="@/assets/logo.png" />
     <div class="container">
       <nav class="nav">
         <div class="nav-wrapper blue darken-1">
@@ -10,11 +9,11 @@
     </div>
 
     <div class="container">
-      <ul>
+      <!-- <ul>
         <li v-for="(erro, index) of errors" :key="index">
           campo <b>{{ erro.field }}</b> - {{ erro.defaultMessage }}
         </li>
-      </ul>
+      </ul> -->
 
       <table>
         <thead>
@@ -35,19 +34,27 @@
           </tr>
         </tbody>
       </table>
-      
+      {{atributos}}
     </div>
   </div>
 </template>
 
 <script>
+const axios = require('axios');
+
 export default {
-  name: 'HomeComponents',
   data() {
     return {
       atributos: []
-    };
+    }
   },
+
+  mounted () {
+    axios
+//      .get('http://postman-echo.com/post')
+      .get('https://api.coindesk.com/v1/bpi/currentprice.json')
+      .then(response => (this.atributos = response.data))
+  }
 };
 </script>
 
