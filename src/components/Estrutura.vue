@@ -18,43 +18,40 @@
       <table>
         <thead>
           <tr>
-            <th>Col.1</th>
-            <th>Col.2</th>
-            <th>Col.3</th>
-            <th>Col.4</th>
+            <th>Data</th>
+            <th>Status</th>
+            <th>Url</th>
           </tr>
         </thead>
 
         <tbody>
           <tr>
-            <td>atributo 1</td>
-            <td>atributo 2</td>
-            <td>atributo 3</td>
-            <td>atributo 4</td>
+            <td>{{ atributos.data.time.updated }}</td>
+            <td>{{ atributos.status }}</td>
+            <td>{{ atributos.config.url }}</td>
           </tr>
         </tbody>
       </table>
-      {{atributos}}
     </div>
   </div>
 </template>
 
 <script>
-const axios = require('axios');
+const axios = require("axios");
 
 export default {
   data() {
     return {
-      atributos: []
-    }
+      atributos: [],
+    };
   },
 
-  mounted () {
+  mounted() {
     axios
-//      .get('http://postman-echo.com/post')
-      .get('https://api.coindesk.com/v1/bpi/currentprice.json')
-      .then(response => (this.atributos = response.data))
-  }
+      //      .get('http://postman-echo.com/post')
+      .get("https://api.coindesk.com/v1/bpi/currentprice.json")
+      .then((response) => (this.atributos = response));
+  },
 };
 </script>
 
